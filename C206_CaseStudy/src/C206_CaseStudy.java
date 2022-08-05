@@ -12,36 +12,36 @@ public class C206_CaseStudy {
 
 		while (option != 4) {
 
-			CurrencyCentre.menu();
+			//CurrencyCentre.menu();
 			option = Helper.readInt("Enter an option > ");
 
 		}  if (option == 1) {
 			// View all currency
-			CurrencyCentre.viewAllCurrency(CurrencyList);
+			//CurrencyCentre.viewAllCurrency(CurrencyList);
 
 
 		} else if (option == 2) {
 			// Add item
-			CurrencyCentre.setHeader("ADD CURRENCY");
+			//CurrencyCentre.setHeader("ADD CURRENCY");
 
 			String addCurrency = Helper.readString("Add currency > ");
 
-			addCurrency.add(CurrencyList);
+			//addCurrency.add(CurrencyList);
 
 
 
 		} else if (option == 3) {
 			// Delete currency
-			CurrencyCentre.setHeader("DELETE CURRENCY");
+			//CurrencyCentre.setHeader("DELETE CURRENCY");
 
 			String delCurrency = Helper.readString("Delete currency by country> ");
-			delCurrency.remove(CurrencyList);
+			//delCurrency.remove(CurrencyList);
 		}else 
 			System.out.println("Bye!");
 	}
 
 	public static void menu() {
-		CurrencyCentre.setHeader("CURRENCY EXCHANGE APP");
+		//CurrencyCentre.setHeader("CURRENCY EXCHANGE APP");
 		System.out.println("1. Add currency");
 		System.out.println("2. View currency");
 		System.out.println("3. Delete currency");
