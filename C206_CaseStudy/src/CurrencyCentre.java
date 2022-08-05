@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Currency;
-
 public class CurrencyCentre {
 
 	private String currencyCountry; 
@@ -56,30 +53,4 @@ public class CurrencyCentre {
 	public String getIsoCode() {
 		return isoCode;
 	}
-
-	public static void menu() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public static void viewAllCurrency(ArrayList<CurrencyCentre> currencyList) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public static void setHeader(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public static void addCurrencyCentre(ArrayList<CurrencyCentre> currencyList, Currency cc) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-
-		
 }
-	
-	
