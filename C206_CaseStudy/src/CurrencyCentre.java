@@ -53,4 +53,12 @@ public class CurrencyCentre {
 	public String getIsoCode() {
 		return isoCode;
 	}
+	public double getConvertedBuyRate(double userAmount) {
+		double convertedBuyRate = userAmount * getBuyRate();
+		return convertedBuyRate;
+	}
+	public double getConvertedSellRate(double userAmount) {
+		double convertedSellRate = userAmount * getBuyRate();
+		return convertedSellRate;
+	}
 }

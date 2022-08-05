@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Currency;
 
 public class C206_CaseStudy {
 
@@ -12,7 +11,7 @@ public class C206_CaseStudy {
 
 		while (option != 5) {
 
-			//CurrencyCentre.menu();
+			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
 		}  if (option == 1) {
@@ -30,14 +29,14 @@ public class C206_CaseStudy {
 		} else if (option == 3) {
 			// Delete currency
 			//CurrencyCentre.setHeader("DELETE CURRENCY");
-
 			String delCurrency = Helper.readString("Delete currency by country> ");
 			//delCurrency.remove(CurrencyList);
-		}
-		else if (option == 4) {
-			// Search Currency
 			
-		}else 
+		} else if (option == 4) {
+			// Search Currency
+			C206_CaseStudy.searchCurrency(CurrencyList);
+			
+		} else 
 			System.out.println("Bye!");
 	}
 
@@ -58,12 +57,37 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 	
-	public void searchCurrency() {
+	public static String searchCurrency(ArrayList<CurrencyCentre> CurrencyList) {
 		
-		String userSearchRateType = Helper.readString("Delete currency by country> ");
+		String output = "";
+		
+		String userSearchRateType = Helper.readString("Enter Buy or Sell Rate > ");
+		
+		Helper.line(80, "-");
+		System.out.println("MENU");
+		System.out.println("1.Search by country name.");
+		System.out.println("2.Search by iso code.");
+		Helper.line(80, "-");
+		
+		int userSearchPref = Helper.readInt("Enter option > ");
+		
+		if (userSearchPref == 1) {
+			String userCountry = Helper.readString("Enter country name > ");
+			double userAmount = Helper.readDouble("Enter amount to Buy/Sell");
+			
+			for (CurrencyCentre i : CurrencyList) {
+				if (userSearchRateType.equalsIgnoreCase("Buy")) {
+					output += String.format("%-10d %-10d.2f\n", i.getCurrencyCountry(), i.getConvertedBuyRate(userAmount));
+				}
+			}
+		}
+		
+		else if (userSearchPref == 2) {
+			String isoCode = Helper.readString("Enter ISO Code > ");
+			double userAmount = Helper.readDouble("Enter amount to Buy/Sell");
+		}
+		return output;
 	}
-	
-	
 }
 
 
