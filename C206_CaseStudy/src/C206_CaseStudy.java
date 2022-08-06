@@ -3,11 +3,12 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ArrayList<CurrencyCentre> CurrencyList = new ArrayList<CurrencyCentre>();
-
-		CurrencyList.add(new CurrencyCentre("Singapore Dollar","SIN","SGP",0.00 ,0.00, "05-Aug-2022", 0));
-		int option = 0;
+		
+		ArrayList<CurrencyCentre> currencyList = new ArrayList<CurrencyCentre>();
+		
+		currencyList.add(new CurrencyCentre("Singapore Dollar","SIN","SGP",0.00 ,0.00,"05-Aug-2022",0));
+		
+		int option = -1;
 
 		while (option != 5) {
 
@@ -15,7 +16,7 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 
 		}  if (option == 1) {
-			// View all currency
+			//View all currency
 			//CurrencyCentre.viewAllCurrency(CurrencyList);
 			
 		} else if (option == 2) {
@@ -34,14 +35,15 @@ public class C206_CaseStudy {
 			
 		} else if (option == 4) {
 			// Search Currency
-			C206_CaseStudy.searchCurrency(CurrencyList);
+			System.out.println("Ping!");
+			C206_CaseStudy.searchCurrency(currencyList);
 			
 		} else 
 			System.out.println("Bye!");
 	}
 
 	public static void menu() {
-		//CurrencyCentre.setHeader("CURRENCY EXCHANGE APP");
+		CurrencyCentre.setHeader("CURRENCY EXCHANGE APP");
 		System.out.println("1. Add currency");
 		System.out.println("2. View currency");
 		System.out.println("3. Delete currency");
@@ -57,11 +59,11 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 	
-	public static String searchCurrency(ArrayList<CurrencyCentre> CurrencyList) {
+	public static String searchCurrency(ArrayList<CurrencyCentre> currencyList) {
 		
-		String output = "";
+		String output = String.format("%-20s %-10s %-20s %-10s\n", "CURRENT COUNTRY", "AMOUNT","OTHER COUNTRY", "CONVERTED BUY RATE");
 		
-		String userSearchRateType = Helper.readString("Enter Buy or Sell Rate > ");
+		String userSearchRateType = Helper.readString("Enter viewing of Buy or Sell Rate > ");
 		
 		Helper.line(80, "-");
 		System.out.println("MENU");
@@ -75,16 +77,35 @@ public class C206_CaseStudy {
 			String userCountry = Helper.readString("Enter country name > ");
 			double userAmount = Helper.readDouble("Enter amount to Buy/Sell");
 			
-			for (CurrencyCentre i : CurrencyList) {
+			for (CurrencyCentre i : currencyList) {
 				if (userSearchRateType.equalsIgnoreCase("Buy")) {
-					output += String.format("%-10d %-10d.2f\n", i.getCurrencyCountry(), i.getConvertedBuyRate(userAmount));
+					output += String.format("%-20s %-10d %-20s %-10d.2f\n", userCountry, i.getAmount(), i.getCurrencyCountry(), i.getConvertedBuyRate(userAmount));
+				}
+				else if (userSearchRateType.equalsIgnoreCase("Sell")) {
+					output += String.format("%-20s %-10d %-20s %-10d.2f\n", userCountry, i.getAmount(), i.getCurrencyCountry(), i.getConvertedSellRate(userAmount));
+				}
+				else {
+					output = "Invalid input! Please enter buy or sell.";
 				}
 			}
 		}
 		
 		else if (userSearchPref == 2) {
+			output = String.format("%-10s %-10s %-10s %-10s\n", "CURRENT ISO CODE", "AMOUNT","OTHER ISO CODE", "CONVERTED BUY RATE");
 			String isoCode = Helper.readString("Enter ISO Code > ");
 			double userAmount = Helper.readDouble("Enter amount to Buy/Sell");
+			
+			for (CurrencyCentre i : currencyList) {
+				if (userSearchRateType.equalsIgnoreCase("Buy")) {
+						output += String.format("%-10s %-10d %-10s %-10d.2f\n", isoCode, i.getAmount(), i.getIsoCode(), i.getConvertedBuyRate(userAmount));
+				}
+				else if (userSearchRateType.equalsIgnoreCase("Sell")) {
+					output += String.format("%-10s %-10d %-10s %-10d.2f\n", isoCode, i.getAmount(), i.getIsoCode(), i.getConvertedSellRate(userAmount));
+				}
+				else {
+					output = "Invalid input! Please enter buy or sell.";
+				}
+			}
 		}
 		return output;
 	}
