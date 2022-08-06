@@ -43,7 +43,7 @@ public class C206_CaseStudy {
 	}
 
 	public static void menu() {
-		CurrencyCentre.setHeader("CURRENCY EXCHANGE APP");
+		//CurrencyCentre.setHeader("CURRENCY EXCHANGE APP");
 		System.out.println("1. Add currency");
 		System.out.println("2. View currency");
 		System.out.println("3. Delete currency");
