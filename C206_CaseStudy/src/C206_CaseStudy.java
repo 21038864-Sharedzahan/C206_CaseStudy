@@ -61,7 +61,7 @@ public class C206_CaseStudy {
 	
 	public static String searchCurrency(ArrayList<CurrencyCentre> currencyList) {
 		
-		String output = String.format("%-20s %-10s %-20s %-10s\n", "CURRENT COUNTRY", "AMOUNT","OTHER COUNTRY", "CONVERTED BUY RATE");
+		String output = String.format("%-20s %-10s %-20s %-10s\n", "CURRENT COUNTRY","AMOUNT","OTHER COUNTRY","CONVERTED BUY RATE");
 		
 		String userSearchRateType = Helper.readString("Enter viewing of Buy or Sell Rate > ");
 		
@@ -79,10 +79,10 @@ public class C206_CaseStudy {
 			
 			for (CurrencyCentre i : currencyList) {
 				if (userSearchRateType.equalsIgnoreCase("Buy")) {
-					output += String.format("%-20s %-10d %-20s %-10d.2f\n", userCountry, i.getAmount(), i.getCurrencyCountry(), i.getConvertedBuyRate(userAmount));
+					output += String.format("%-20s %-10d %-20s %-10d.2f\n", userCountry, userAmount, i.getCurrencyCountry(), i.getConvertedBuyRate(userAmount));
 				}
 				else if (userSearchRateType.equalsIgnoreCase("Sell")) {
-					output += String.format("%-20s %-10d %-20s %-10d.2f\n", userCountry, i.getAmount(), i.getCurrencyCountry(), i.getConvertedSellRate(userAmount));
+					output += String.format("%-20s %-10d %-20s %-10d.2f\n", userCountry, userAmount, i.getCurrencyCountry(), i.getConvertedSellRate(userAmount));
 				}
 				else {
 					output = "Invalid input! Please enter buy or sell.";
