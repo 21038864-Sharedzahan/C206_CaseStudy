@@ -70,7 +70,7 @@ public class C206_CaseStudyTest {
 		assertEquals(32.30, currencyList.get(1).getConvertedBuyRate(10), DELTA);
 		
 		// Test that 1 SGD converts to 0.3105 MYR for sell rate
-		assertEquals(0.3105, currencyList.get(1).getConvertedBuyRate(1), DELTA);
+		assertEquals(0.3105, currencyList.get(1).getConvertedSellRate(1), DELTA);
 		
 		// Test that the latest date is used for conversion for buy rate.
 		String correctDate = "12-08-2022";
@@ -84,7 +84,5 @@ public class C206_CaseStudyTest {
 		cc3 = null;
 		
 		currencyList = null;
-
 	}
-
 }
