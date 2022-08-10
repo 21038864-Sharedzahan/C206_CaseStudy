@@ -6,49 +6,63 @@ public class C206_CaseStudy {
 		
 		ArrayList<CurrencyCentre> currencyList = new ArrayList<CurrencyCentre>();
 		
-		currencyList.add(new CurrencyCentre("Singapore Dollar","SIN","SGP",0.00 ,0.00,"05-Aug-2022",0));
-		
+		currencyList.add(new CurrencyCentre("Singapore","Singapore Dollar","SGD",0.00 ,0.00,"05-Aug-2022",0));
+		currencyList.add(new CurrencyCentre("Malaysia","Ringit","MYR",0.00 ,0.00,"05-Aug-2022",0));
+		currencyList.add(new CurrencyCentre("European Union","EURO's","EUR",0.00 ,0.00,"05-Aug-2022",0));
+		currencyList.add(new CurrencyCentre("United States","US Dollar","USD",0.00 ,0.00,"05-Aug-2022",0));
 		int option = -1;
 
-		while (option != 5) {
+		while (option != 8) {
 
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
 		}  if (option == 1) {
-			//View all currency
-			//CurrencyCentre.viewAllCurrency(CurrencyList);
+			// View all items
 			
 		} else if (option == 2) {
-			// Add item
-			//CurrencyCentre.setHeader("ADD CURRENCY");
-
+			 // Add a new item
 			String addCurrency = Helper.readString("Add currency > ");
-
-			//addCurrency.add(CurrencyList);
 			
 		} else if (option == 3) {
 			// Delete currency
-			//CurrencyCentre.setHeader("DELETE CURRENCY");
-			String delCurrency = Helper.readString("Delete currency by country> ");
-			//delCurrency.remove(CurrencyList);
+	   
 			
 		} else if (option == 4) {
 			// Search Currency
-			System.out.println("Ping!");
 			C206_CaseStudy.searchCurrency(currencyList);
 			
-		} else 
+		} 
+		
+		else if (option == 5) {
+			C206_CaseStudy.viewAllHoldings(currencyList);
+			
+		}
+		
+		else if (option == 6) {
+			C206_CaseStudy.increaseHoldings(currencyList);
+			
+		}
+		
+		else if (option == 7) {
+			C206_CaseStudy.decreaseHoldings(currencyList);
+			
+		}
+		else 
 			System.out.println("Bye!");
 	}
 
 	public static void menu() {
-		//CurrencyCentre.setHeader("CURRENCY EXCHANGE APP");
+		System.out.println("Money Exchange Management System");
+		Helper.line(80, "-");
 		System.out.println("1. Add currency");
 		System.out.println("2. View currency");
 		System.out.println("3. Delete currency");
 		System.out.println("4. Search for Buy/Sell rate of currency");
-		System.out.println("5. Quit");
+		System.out.println("5. View All Holdings");
+		System.out.println("6. Increase Holdings");
+		System.out.println("7. Decrease Holdings");
+		System.out.println("8. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -109,6 +123,65 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
+	
+	 public static String retrieveAllHoldings(ArrayList<CurrencyCentre> currencyList) {
+	      String output = "";
+
+	      for (int i = 0; i < currencyList.size(); i++) {
+	        output += String.format("%-10s %-20s %.2f\n", currencyList.get(i).getIsoCode(),
+	            currencyList.get(i).getCurrencyName(), currencyList.get(i).getAmount());
+	      
+	      }
+	        return output;
+	    }
+	      
+	    
+	    public static void viewAllHoldings(ArrayList<CurrencyCentre> currencyList) {
+	      String output = String.format("%-10s %-20s %-15s\n", "ISO", "NAME", "HOLDINGS");
+	        output += retrieveAllHoldings(currencyList);
+	        System.out.println(output);
+	}
+	  
+	    
+	    public static void increaseHoldings(ArrayList<CurrencyCentre> currencyList) {
+	      String ISO = Helper.readString("Enter ISO Code (USD, EUR, SGD) > ");
+	      
+	      boolean isIncrease = false;
+	      for (int i = 0; i < currencyList.size(); i++) {
+	        if(currencyList.get(i).getIsoCode().equalsIgnoreCase(ISO)) {
+	          double amount = Helper.readDouble("Enter amount to increase > ");
+	          currencyList.get(i).setAmount(currencyList.get(i).getAmount() + amount);
+	          System.out.println("Holdings for currency " + currencyList.get(i).getIsoCode() + " is successfully increased!");
+	          isIncrease = true;
+	          
+	        }
+	        
+	        if(isIncrease = false) {
+	          System.out.println("Invalid ISO Code!");
+	          
+	        }
+	      }  
+	    }
+	    
+	    public static void decreaseHoldings(ArrayList<CurrencyCentre> currencyList) {
+	      String ISO = Helper.readString("Enter ISO Code (USD, EUR, SGD) > ");
+	      
+	      boolean isDecrease = false;
+	      for (int i = 0; i < currencyList.size(); i++) {
+	        if(currencyList.get(i).getIsoCode().equalsIgnoreCase(ISO)) {
+	          double amount = Helper.readDouble("Enter amount to decrease > ");
+	          currencyList.get(i).setAmount(currencyList.get(i).getAmount() - amount);
+	          System.out.println("Holdings for currency " + currencyList.get(i).getIsoCode() + " is successfully decreased!");
+	          isDecrease = true;
+	          
+	        }
+	        
+	        if(isDecrease = false) {
+	          System.out.println("Invalid ISO Code!");
+	          
+	        }
+	      }  
+	    }
 }
 
 
