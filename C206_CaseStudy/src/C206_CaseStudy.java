@@ -251,7 +251,8 @@ public class C206_CaseStudy {
 					if (date.equalsIgnoreCase(date)) {
 						char confirm = Helper.readChar("Do you want to delete " + ISO +" of " + date +"? (y/n) > ");
 						if (confirm == 'y' || confirm == 'Y') {
-							currencyList.remove(i);
+							currencyList.get(i).setBuyRate(0);
+							currencyList.get(i).setSellRate(0);
 							System.out.println("Sell and Buy Rate of " + ISO + " on " + date + " has been deleted! ");
 						}else {
 							System.out.println("Delete has been cancelled !");
