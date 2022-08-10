@@ -16,7 +16,7 @@ public class C206_CaseStudy {
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
-		}  if (option == 1) {
+		if (option == 1) {
 			// View all items
 			
 		} else if (option == 2) {
@@ -52,11 +52,11 @@ public class C206_CaseStudy {
 		}
 		
 		else if (option == 9) {
-			C206_CaseStudy.AddCurrRate(currencyList);
+			C206_CaseStudy.DeleteCurrRate(currencyList);
 		}
 		
 		else if (option == 10) {
-			C206_CaseStudy.AddCurrRate(currencyList);
+			C206_CaseStudy.UpdateCurrRate(currencyList);
 		}
 		
 		else if (option == 11) {
@@ -68,6 +68,8 @@ public class C206_CaseStudy {
 		}
 		
 	}
+		
+}
 
 	public static void menu() {
 		System.out.println("Money Exchange Management System");
@@ -82,7 +84,7 @@ public class C206_CaseStudy {
 		System.out.println("8. Add Currency Rate");
 		System.out.println("9. Delete Currency Rate");
 		System.out.println("10. Update Currency Rate");
-		System.out.println("8. Quit");
+		System.out.println("11. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -204,7 +206,27 @@ public class C206_CaseStudy {
 	    }
 	    
 		private static void AddCurrRate(ArrayList<CurrencyCentre> currencyList) {
+			String ISO = Helper.readString("Enter ISO Code or Currency Name > ");
 			
+			for (int i = 0; i < currencyList.size(); i++) {
+				if (ISO.equalsIgnoreCase(currencyList.get(i).getIsoCode()) || ISO.equalsIgnoreCase(currencyList.get(i).getCurrencyName())) {
+					double BuyAmount = Helper.readDouble("Enter Buy Rate for " + ISO + " > " );
+					double SellAmount = Helper.readDouble("Enter Sell Rate for " + ISO + " > ");
+					String date = Helper.readString("Enter date stamp for Currency Rate (dd/mm/yyyy) > ");
+					if (BuyAmount < 0 || SellAmount < 0 ) {
+						System.out.println("Currency value cannot be negative. Please Input a positive value.");
+					}else if (BuyAmount == 0 || SellAmount == 0) {
+						System.out.println("Currency value of 0 is not Accepted. Please Input a value larger than 0.");
+					}else {
+						currencyList.get(i).setBuyRate(BuyAmount);
+						currencyList.get(i).setSellRate(SellAmount);
+						System.out.println("The Buy rate for "+  ISO +" for " + date +" of " + BuyAmount + " per SGD 1.00 is added");
+					}
+					
+				}else {
+					System.out.println("No");
+				}
+			}
 		}
 		
 		private static void DeleteCurrRate(ArrayList<CurrencyCentre> currencyList) {
