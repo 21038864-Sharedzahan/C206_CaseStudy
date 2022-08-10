@@ -12,8 +12,7 @@ public class C206_CaseStudy {
 		currencyList.add(new CurrencyCentre("United States","US Dollar","USD",0.00 ,0.00,"05-Aug-2022",0));
 		int option = -1;
 
-		while (option != 8) {
-
+		while (option != 11) {
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
@@ -48,8 +47,26 @@ public class C206_CaseStudy {
 			C206_CaseStudy.decreaseHoldings(currencyList);
 			
 		}
-		else 
+		else if (option == 8) {
+			C206_CaseStudy.AddCurrRate(currencyList);
+		}
+		
+		else if (option == 9) {
+			C206_CaseStudy.AddCurrRate(currencyList);
+		}
+		
+		else if (option == 10) {
+			C206_CaseStudy.AddCurrRate(currencyList);
+		}
+		
+		else if (option == 11) {
 			System.out.println("Bye!");
+		}
+		
+		else {
+			System.out.println("Please input a valid option!");
+		}
+		
 	}
 
 	public static void menu() {
@@ -62,6 +79,9 @@ public class C206_CaseStudy {
 		System.out.println("5. View All Holdings");
 		System.out.println("6. Increase Holdings");
 		System.out.println("7. Decrease Holdings");
+		System.out.println("8. Add Currency Rate");
+		System.out.println("9. Delete Currency Rate");
+		System.out.println("10. Update Currency Rate");
 		System.out.println("8. Quit");
 		Helper.line(80, "-");
 
@@ -182,6 +202,18 @@ public class C206_CaseStudy {
 	        }
 	      }  
 	    }
+	    
+		private static void AddCurrRate(ArrayList<CurrencyCentre> currencyList) {
+			
+		}
+		
+		private static void DeleteCurrRate(ArrayList<CurrencyCentre> currencyList) {
+			
+		}
+		
+		private static void UpdateCurrRate(ArrayList<CurrencyCentre> currencyList) {
+			
+		}
 }
 
 
