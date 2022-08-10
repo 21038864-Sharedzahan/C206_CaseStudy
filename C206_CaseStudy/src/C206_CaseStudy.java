@@ -207,25 +207,34 @@ public class C206_CaseStudy {
 	    
 		private static void AddCurrRate(ArrayList<CurrencyCentre> currencyList) {
 			String ISO = Helper.readString("Enter ISO Code or Currency Name > ");
-			
+			boolean check = false;
 			for (int i = 0; i < currencyList.size(); i++) {
 				if (ISO.equalsIgnoreCase(currencyList.get(i).getIsoCode()) || ISO.equalsIgnoreCase(currencyList.get(i).getCurrencyName())) {
 					double BuyAmount = Helper.readDouble("Enter Buy Rate for " + ISO + " > " );
 					double SellAmount = Helper.readDouble("Enter Sell Rate for " + ISO + " > ");
 					String date = Helper.readString("Enter date stamp for Currency Rate (dd/mm/yyyy) > ");
+					
 					if (BuyAmount < 0 || SellAmount < 0 ) {
 						System.out.println("Currency value cannot be negative. Please Input a positive value.");
+						
 					}else if (BuyAmount == 0 || SellAmount == 0) {
 						System.out.println("Currency value of 0 is not Accepted. Please Input a value larger than 0.");
+						
 					}else {
 						currencyList.get(i).setBuyRate(BuyAmount);
 						currencyList.get(i).setSellRate(SellAmount);
-						System.out.println("The Buy rate for "+  ISO +" for " + date +" of " + BuyAmount + " per SGD 1.00 is added");
+						currencyList.get(i).setDate(date);
+						System.out.println("The Buy rate for "+  ISO +" for " + date +" of " + BuyAmount + " rate is added");
+						System.out.println("The Sell rate for "+  ISO +" for " + date +" of " + SellAmount + " rate is added");
+						check = true;
+						break;
+						
 					}
-					
-				}else {
-					System.out.println("No");
 				}
+			}
+			
+			if (check == false) {
+				System.out.println("The Currency ISO / Name inputted does exist!");
 			}
 		}
 		
