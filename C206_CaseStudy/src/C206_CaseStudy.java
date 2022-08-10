@@ -6,10 +6,10 @@ public class C206_CaseStudy {
 		
 		ArrayList<CurrencyCentre> currencyList = new ArrayList<CurrencyCentre>();
 		
-		currencyList.add(new CurrencyCentre("Singapore","Singapore Dollar","SGD",0.00 ,0.00,"05-Aug-2022",0));
-		currencyList.add(new CurrencyCentre("Malaysia","Ringit","MYR",0.00 ,0.00,"05-Aug-2022",0));
-		currencyList.add(new CurrencyCentre("European Union","EURO's","EUR",0.00 ,0.00,"05-Aug-2022",0));
-		currencyList.add(new CurrencyCentre("United States","US Dollar","USD",0.00 ,0.00,"05-Aug-2022",0));
+		currencyList.add(new CurrencyCentre("Singapore","Singapore Dollar","SGD",0.00 ,0.00,"05-08-2022",0));
+		currencyList.add(new CurrencyCentre("Malaysia","Ringit","MYR",0.00 ,0.00,"05-08-2022",0));
+		currencyList.add(new CurrencyCentre("European Union","EURO's","EUR",0.00 ,0.00,"05-08-2022",0));
+		currencyList.add(new CurrencyCentre("United States","US Dollar","USD",0.00 ,0.00,"05-08-2022",0));
 		int option = -1;
 
 		while (option != 11) {
@@ -208,11 +208,12 @@ public class C206_CaseStudy {
 		private static void AddCurrRate(ArrayList<CurrencyCentre> currencyList) {
 			String ISO = Helper.readString("Enter ISO Code or Currency Name > ");
 			boolean check = false;
+			
 			for (int i = 0; i < currencyList.size(); i++) {
 				if (ISO.equalsIgnoreCase(currencyList.get(i).getIsoCode()) || ISO.equalsIgnoreCase(currencyList.get(i).getCurrencyName())) {
 					double BuyAmount = Helper.readDouble("Enter Buy Rate for " + ISO + " > " );
 					double SellAmount = Helper.readDouble("Enter Sell Rate for " + ISO + " > ");
-					String date = Helper.readString("Enter date stamp for Currency Rate (dd/mm/yyyy) > ");
+					String date = Helper.readString("Enter date stamp for Currency Rate (dd-mm-yyyy) > ");
 					
 					if (BuyAmount < 0 || SellAmount < 0 ) {
 						System.out.println("Currency value cannot be negative. Please Input a positive value.");
@@ -239,11 +240,60 @@ public class C206_CaseStudy {
 		}
 		
 		private static void DeleteCurrRate(ArrayList<CurrencyCentre> currencyList) {
+			String ISO = Helper.readString("Enter ISO Code or Currency Name > ");
+			boolean check = false;
 			
+			for (int i = 0; i < currencyList.size(); i++) {
+				if (ISO.equalsIgnoreCase(currencyList.get(i).getIsoCode()) || ISO.equalsIgnoreCase(currencyList.get(i).getCurrencyName())) {
+					String date = Helper.readString("Enter date stamp for Currency Rate to delete (dd-mm-yyyy) > "); 
+					check = true;
+					
+					if (date.equalsIgnoreCase(date)) {
+						char confirm = Helper.readChar("Do you want to delete " + ISO +" of " + date +"? (y/n) > ");
+						if (confirm == 'y' || confirm == 'Y') {
+							currencyList.remove(i);
+							System.out.println("Sell and Buy Rate of " + ISO + " on " + date + " has been deleted! ");
+						}else {
+							System.out.println("Delete has been cancelled !");
+						}	
+					}
+				}
+			}
+			
+			if (check == false) {
+				System.out.println("The Currency ISO / Name inputted does exist!");
+			}
 		}
 		
 		private static void UpdateCurrRate(ArrayList<CurrencyCentre> currencyList) {
+			String ISO = Helper.readString("Enter ISO Code or Currency Name > ");
+			boolean check = false;
 			
+			for (int i = 0; i < currencyList.size(); i++) {
+				if (ISO.equalsIgnoreCase(currencyList.get(i).getIsoCode()) || ISO.equalsIgnoreCase(currencyList.get(i).getCurrencyName())) {
+					double BuyAmount = Helper.readDouble("Enter Buy Rate for " + ISO + " > " );
+					double SellAmount = Helper.readDouble("Enter Sell Rate for " + ISO + " > ");
+					
+					if (BuyAmount < 0 || SellAmount < 0 ) {
+						System.out.println("Active Buy/Sell Rate cannot be a negative value. Please re-input a positive value!”");
+						
+					}else if (BuyAmount == 0 || SellAmount == 0) {
+						System.out.println("Currency value of 0 is not Accepted. Please Input a value larger than 0.");
+						
+					}else {
+						currencyList.get(i).setBuyRate(BuyAmount);
+						currencyList.get(i).setSellRate(SellAmount);
+						System.out.println("Active Buy and Sell Rate for " + ISO + " has been changed to " + BuyAmount + " and " + SellAmount + " respectively.");
+						check = true;
+						break;
+						
+					}
+				}
+			}
+			
+			if (check == false) {
+				System.out.println("There is no Currency of Active Buy/Sell Rate that is called " + ISO);
+			}
 		}
 }
 
